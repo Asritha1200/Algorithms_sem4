@@ -26,9 +26,11 @@ int partition(int a[],int low,int high)
     {
         j--;
     }
+    if(i<j)
+    {
     swap(a,i,j);
 
-    }
+    }}
     swap(a,low,j);
     
     return j;
