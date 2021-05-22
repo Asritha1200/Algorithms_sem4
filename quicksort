@@ -1,0 +1,65 @@
+#include <stdio.h>
+/* low  --> Starting index,  high  --> Ending index */
+void swap(int a[],int m,int n)
+{
+    int temp;
+    temp=a[m];
+    a[m]=a[n];
+    a[n]=temp;
+    
+    
+}
+int partition(int a[],int low,int high)
+{
+    int i=low;
+    int j=high;
+    int v=a[low];
+    
+    while(i<j){
+    
+    
+    while(a[i]<=v)
+    {
+        i++;
+    }
+    while(a[j]>v)
+    {
+        j--;
+    }
+    swap(a,i,j);
+
+    }
+    swap(a,low,j);
+    
+    return j;
+}
+void quicksort(int a[],int low,int high)
+{
+    int pivot_pos;
+    if(low<high)
+    {
+        pivot_pos=partition(a,low,high);
+        quicksort(a,low,pivot_pos-1);
+         quicksort(a,pivot_pos+1,high);
+    }
+}
+
+int main()
+{
+    int n;
+    int a[10];
+    printf("enter the size of array\n");
+    scanf("%d",&n);
+    printf("enter ele of array");
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    int low=0;
+    int high=n-1;
+    quicksort(a,low,high);
+     for(int i=0;i<n;i++)
+    {
+        printf("%d ",a[i]);
+    }
+}
