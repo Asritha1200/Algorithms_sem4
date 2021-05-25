@@ -14,7 +14,7 @@ int partition(int a[],int low,int high)
     int i=low;
     int j=high;
     int v=a[low];
-    //if i==j (low==high)single ele in the subproblem hence sorted
+
     while(i<j){
     
     
@@ -38,7 +38,7 @@ int partition(int a[],int low,int high)
 void quicksort(int a[],int low,int high)
 {
     int pivot_pos;
-    if(low<high)
+    if(low<high)    //if (low==high)single ele in the subproblem hence sorted
     {
         pivot_pos=partition(a,low,high);
         quicksort(a,low,pivot_pos-1);
