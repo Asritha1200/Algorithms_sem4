@@ -14,7 +14,7 @@ int partition(int a[],int low,int high)
     int i=low;
     int j=high;
     int v=a[low];
-    
+    //if i==j (low==high)single ele in the subproblem hence sorted
     while(i<j){
     
     
