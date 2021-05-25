@@ -2,8 +2,9 @@
 #include <stdio.h>
 void binarysearch(int *a,int key,int n)
 {
-    int low=a[0];
-    int high=a[n-1];
+    int low=0;
+    int high=n-1;
+
     int mid;
     while(low<=high)
     {
@@ -22,7 +23,6 @@ void binarysearch(int *a,int key,int n)
             low=mid+1;
         }
     }
-    printf("not found");
 }
 
 
@@ -43,3 +43,64 @@ int main()
     
     binarysearch(arr,key,n);
 }
+**********************************************************************************
+//RECURSIVE
+#include <stdio.h>
+int binarysearch(int *a,int low,int high,int key)
+{int mid;
+    if(low==high)
+    {
+        if(key==a[low])
+        {
+            return low;
+        }
+        
+    }
+    
+    else
+    {
+        
+        mid=(low+high)/2;
+        if(a[mid]==key)
+        {
+           
+            return mid;
+        }
+        else if(key<a[mid])
+            return binarysearch(a,low,mid-1,key);
+        else
+           return  binarysearch(a,mid+1,high,key);
+            
+        
+    }
+    return 0;
+}
+
+int main()
+{
+    int arr[20];int key;
+    int n;
+    printf("enter size of arr");
+    scanf("%d",&n);
+    printf("enter the sorted array ele");
+    for(int i=0;i<n;i++)
+    {
+    scanf("%d",&arr[i]);
+    }
+    printf("enter the key");
+    scanf("%d",&key);
+    int low=0;
+    int high=n-1;
+    
+    int mid=0;
+    
+  mid=binarysearch(arr,low,high,key);
+  if(mid==0)
+  {
+      printf("key not found");
+  }
+  else
+   printf("key found at %d",mid);
+
+}
+
