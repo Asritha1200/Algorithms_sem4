@@ -1,0 +1,58 @@
+package test;
+import java.util.Scanner;
+
+class student
+{
+	private String name;
+	private int marks,usn;
+	
+	student()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter NAME=");
+		this.name=sc.nextLine();
+		System.out.println("Enter MARKS=");
+		this.marks=sc.nextInt();
+		System.out.println("Enter USN=");
+		this.usn=sc.nextInt();
+		
+	}
+	public static void sort(student [] a,int n)
+	{
+		for(int i=0;i<n;i++)
+			for(int j=0;j<n;j++)
+				if(a[i].marks>a[j].marks)
+				{
+					student temp;
+					temp=a[i];
+					a[i]=a[j];
+					a[j]=temp;
+				}
+					
+	}
+	public void display()
+	{ System.out.println(name+" "+marks+" "+usn); }
+	
+
+	
+}
+public class array
+{
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int n;
+		System.out.println("Ënter the number of students-");
+		n=sc.nextInt();
+		student a[]=new student[n];	
+		for(int i=0;i<a.length;i++)
+			a[i]=new student();
+		
+		student.sort(a,n);
+		System.out.println("Array values are ");
+		for(int i=0;i<a.length;i++)
+			a[i].display();
+	}
+
+
+}
