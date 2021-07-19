@@ -1,0 +1,55 @@
+ package first;
+ import java.util.*;
+ 
+ class employee{
+	 private String nm,cmp;
+	private double sal;
+	public void accept()
+	{
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter the name");
+	nm=sc.next();
+	System.out.println("enetr the company name");
+	cmp=sc.next();
+	System.out.println("Enter the salary");
+	sal=sc.nextDouble();
+	}
+	employee(){
+		nm="";
+		cmp="";
+		sal=0;
+	}
+	public static void swappp(employee e1,employee e2)
+	{
+		employee temp=new employee();
+		
+		temp=e1;
+		e1=e2;
+		e2=temp;
+		System.out.println(e1.nm+" "+e1.cmp+" "+e1.sal);
+		System.out.println(e2.nm+" "+e2.cmp+" "+e2.sal);
+		
+		
+		
+		
+	}
+	 
+	
+ }
+
+public class swapp {
+
+	public static void main(String[] args) {
+		
+		// TODO Auto-generated method stub
+		employee emp1=new employee();
+		employee emp2=new employee();
+		emp1.accept();
+		emp2.accept();
+		
+		employee.swappp(emp1,emp2);
+				
+
+	}
+
+}
