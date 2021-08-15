@@ -1,0 +1,51 @@
+package first;
+import java.util.*;
+import java.lang.*;
+class tot{
+	public static int dp(int coins[],int sum)
+	{
+		 if(coins.length == 0 || sum <= 0) {
+		      return 0;
+		    }
+		int l=coins.length;
+	
+		int[][] arr= new int[l][sum+1];
+		for(int i=0;i<coins.length;i++)
+		{
+			arr[i][0]=1;
+		}
+		for(int i=0;i<coins.length;i++)
+		{
+			for(int j=1;j<=sum;j++)
+			{
+				int includingcurrentcoin=0;
+				int excludingcurrentcoin=0;
+				if(coins[i]<=j)
+				{
+				includingcurrentcoin=arr[i][j-coins[i]];
+				}
+				if(i>0)
+				{
+					excludingcurrentcoin=arr[i-1][j];
+				}
+				arr[i][j]=includingcurrentcoin+excludingcurrentcoin;
+				
+			}
+		
+		
+	     }
+		return arr[l-1][sum];
+}
+}
+public class totalways {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		int coins[]= {1,2,3};
+		int sum=5;
+		int goal=tot.dp(coins,sum);
+		System.out.println("the gaol is"+goal);
+	}
+
+}
