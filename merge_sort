@@ -1,0 +1,89 @@
+package first;
+import java.util.Scanner;
+class mss{
+	 void mergesort(int A[],int low,int high)
+	{
+		if(low<high)
+		{
+			int mid=(low+high)/2;
+			mergesort(A,low,mid); 
+			mergesort(A,mid+1,high);
+		
+			merge(A,low,mid,high);
+		}
+	}
+	private void merge(int A[],int low,int mid,int high)
+	{
+		int q=high-low+1;
+		int B[]=new int[q];
+		int i=low;
+		int j=mid+1;int k=0;
+		while(i<=mid&&j<=high)
+		{
+			if(A[i]<A[j])
+			{
+				B[k]=A[i++];
+				
+			}
+			else
+			{
+				B[k]=A[j++];
+			}
+			k++;
+		}
+		
+		while(i<=mid)
+		{
+			B[k]=A[i];
+			k++;
+			i++;
+		}
+		while(j<=high)
+		{
+			B[k]=A[j];
+			k++;
+			j++;
+		}
+		
+		for(int z=0;z<q;z++)
+		{
+			A[z+low]=B[z];
+		}
+		
+	}
+	
+	
+}
+public class main {
+
+	public static void main(String[] args) {
+		int n;
+		System.out.println("enter the number of elements of array");
+		Scanner sc=new Scanner(System.in);
+		n=sc.nextInt();
+		
+		// TODO Auto-generated method stub
+		int A[]= new int[n];
+		int low=0;
+		int high=n-1;
+		System.out.println("enter the elements of the array");
+		for(int i=0;i<n;i++)
+		{
+			A[i]=sc.nextInt();
+		}
+		System.out.println("before merge sort");
+		for(int i=0;i<n;i++)
+		{
+			System.out.println(A[i]+" ");
+		}
+		mss ob=new mss();
+		ob.mergesort(A,low,high);
+		System.out.println("after merge sort");
+		for(int i=0;i<n;i++)
+		{
+			System.out.println(A[i]+" ");
+		}
+
+	}
+
+}
