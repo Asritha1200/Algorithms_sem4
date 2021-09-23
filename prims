@@ -1,0 +1,87 @@
+package first;
+import java.util.Scanner;
+
+public class mst {
+	int min_distance(int key[],boolean visited[])
+	{
+		int min=Integer.MAX_VALUE;
+		int min_index=0;
+		int n=key.length;
+		for(int v=0;v<n;v++)
+		{
+			if(visited[v]==false &&key[v]<min)
+			{
+				min=key[v];
+				min_index=v;
+			}
+		}
+		return min_index;
+	}
+	void printmst(int graph[][],int parent[])
+	{
+		int n=graph.length;
+		for(int i=1;i<n;i++)
+		{
+			System.out.println(parent[i]+ "-" +i+"\t"+graph[parent[i]][i]);
+		}
+		
+	}
+	void prims(int graph[][])
+	{
+		int n=graph.length;
+		int parent[]=new int[n];
+		boolean visited[]=new boolean[n];
+		int key[]=new int[n];
+		
+		for(int i=0;i<n;i++)
+		{
+			key[i]=Integer.MAX_VALUE;
+			visited[i]=false;
+			
+			
+		}
+		key[0]=0;
+	parent[0]=-1;
+	for(int count=0;count<n-1;count++)
+	{
+		int u=min_distance(key,visited);
+		visited[u]=true;
+		for(int v=0;v<n;v++) {
+			
+			if(!visited[v]&&graph[u][v]!=0&&graph[u][v]<key[v]) {
+				parent[v]=u;
+				key[v]=graph[u][v];
+				
+				
+			}
+				
+		
+		
+	
+		
+	}
+	}
+	printmst(graph,parent);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter the number of vertices");
+		int n;
+		n=sc.nextInt();
+		System.out.println("enter the adjacency matrix");
+		int graph[][]=new int[n][n];
+		for(int i=0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+			{
+				graph[i][j]=sc.nextInt();
+				
+			}
+		}
+		mst ob=new mst();
+		ob.prims(graph);
+		
+	}
+
+}
