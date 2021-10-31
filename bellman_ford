@@ -1,0 +1,99 @@
+
+import java.util.Scanner;
+
+import java.lang.*;
+
+import java.io.*;
+public class Graphh{
+	class Edge
+	{
+		int src,dest,weight;
+		Edge()
+		{
+			src=dest=weight=0;
+		}
+	};
+	Edge edge[];
+	int V;
+	int E;
+Graphh(int v,int e)
+{
+	V=v;
+	E=e;
+	edge=new Edge[e];
+	for(int i=0;i<e;i++)
+	{
+		edge[i]=new Edge();
+	}
+}
+void bellmanford(Graphh graph,int sv)
+{
+	int V=graph.V;
+	int E=graph.E;
+	int parent[]=new int[V];
+	int cost[]=new int[V];
+	for(int i=0;i<V;i++)
+	{
+		cost[i]=Integer.MAX_VALUE;	
+	}
+	cost[sv]=0;
+	parent[0]=-1;//when source vertex is 0
+	boolean updated;
+	for(int i=0;i<V-1;i++)
+	{
+		updated=false;
+		for(int j=0;j<E;j++)
+		{
+			int u=edge[j].src;
+			int v=edge[j].dest;
+			int wt=edge[j].weight;
+			if(cost[u]!=Integer.MAX_VALUE&&cost[u]+wt<cost[v])
+			{
+				cost[v]=cost[u]+wt;
+				parent[v]=u;
+				updated =true;
+			}
+			if(updated==false)
+			{
+				break;
+			}
+		}
+		for(int j=0;j<E ;j++)
+		{
+			int u=edge[j].src;
+			int v=edge[j].dest;
+			int wt=edge[j].weight;
+			if(cost[u]!=Integer.MAX_VALUE&&cost[u]+wt<cost[v])
+			{
+				System.out.println("Graph has negative edge cycle");
+				return;
+			}
+		}
+	}
+	for(int i=1;i<V;i++)
+	{
+		System.out.println("U->V"+parent[i]+"->"+i+"cost to reach"+parent[i]+"from source 0 is"+cost[i]);
+	}
+	
+}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+
+		System.out.println("Enter the number of vertices");
+		int V=sc.nextInt();
+		System.out.println("Enter the number of edges");
+		int E=sc.nextInt();
+		Graphh graph=new Graphh(V,E);
+		for(int i=0;i<E;i++)
+		{
+			graph.edge[i].src=sc.nextInt();
+			graph.edge[i].dest=sc.nextInt();
+			graph.edge[i].weight=sc.nextInt();
+		}
+		System.out.println("enter the source vertex");
+		int sv=sc.nextInt();
+		graph.bellmanford(graph,sv);
+	}
+
+}
